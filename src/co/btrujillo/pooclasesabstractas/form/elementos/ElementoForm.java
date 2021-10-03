@@ -17,6 +17,6 @@ abstract public class ElementoForm {
         this.valor = valor;
     }
 
-    abstract public String dibujarHtml()
+    abstract public String dibujarHtml();
 
 }
