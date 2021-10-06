@@ -1,8 +1,9 @@
 package co.btrujillo.pooclasesabstractas.form.validador;
 
-public class RequeridoValidador extends Validador{
+public class EmailValidador extends Validador {
 
-    protected String mensaje= "El campo es requerido";
+    protected String mensaje = "el formato es invalido";
+    private static final String EMAIL_REGEX = "^(.+)@(.+)$";
 
     @Override
     public void setMensaje(String mensaje) {
@@ -16,6 +17,6 @@ public class RequeridoValidador extends Validador{
 
     @Override
     public boolean esValido(String valor) {
-        return (valor!=null && (valor.length()>0));
+        return valor.matches(EMAIL_REGEX);
     }
 }
