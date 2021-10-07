@@ -1,6 +1,8 @@
 package co.btrujillo.pooclasesabstractas.form.elementos;
 
+import co.btrujillo.pooclasesabstractas.form.validador.LargoValidador;
 import co.btrujillo.pooclasesabstractas.form.validador.Validador;
+import co.btrujillo.pooclasesabstractas.form.validador.mensaje.IMensajeFormateable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,11 @@ abstract public class ElementoForm {
     public boolean esValido(){
         for(Validador v: validadores){
             if(!v.esValido(this.valor)){
-                errores.add(v.getMensaje());
+                if(v instanceof IMensajeFormateable) {
+                    errores.add(((IMensajeFormateable) v).getMensajeFormateado(nombre));
+                }else {
+                    errores.add(String.format(v.getMensaje(), this.nombre));
+                }
             }
         }
         return errores.isEmpty();

@@ -1,7 +1,9 @@
 package co.btrujillo.pooclasesabstractas.form.validador;
 
-public class LargoValidador extends Validador{
-    private String mensaje= "el campo debe contener entre %d y %d caracteres";
+import co.btrujillo.pooclasesabstractas.form.validador.mensaje.IMensajeFormateable;
+
+public class LargoValidador extends Validador implements IMensajeFormateable {
+    private String mensaje= "el campo %s debe contener entre %d y %d caracteres";
     private int min;
     private int max =Integer.MAX_VALUE;
 
@@ -34,11 +36,18 @@ public class LargoValidador extends Validador{
 
     @Override
     public boolean esValido(String valor){
-        this. mensaje= String.format(this.mensaje, this.min, this.max);
+      //  this. mensaje= String.format(this.mensaje ,this.min, this.max);
         if(valor ==null){
             return true;
         }
         int largo = valor.length();
         return(largo>=this.min&& largo<=max);
+    }
+
+
+
+    @Override
+    public String getMensajeFormateado(String nombre) {
+        return String.format(this.mensaje, nombre ,this.min, this.max);
     }
 }

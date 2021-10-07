@@ -2,7 +2,7 @@ package co.btrujillo.pooclasesabstractas.form.validador;
 
 public class EmailValidador extends Validador {
 
-    protected String mensaje = "el formato es invalido";
+    protected String mensaje = "el formato de %s es invalido";
     private static final String EMAIL_REGEX = "^(.+)@(.+)$";
 
     @Override
